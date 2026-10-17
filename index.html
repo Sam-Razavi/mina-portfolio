@@ -1,587 +1,587 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Mina Maddahi</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mina Maddahi — UX Research for Immersive Technology</title>
+<meta name="description" content="Mina Maddahi is a UX researcher and computer engineer in Stockholm, working on VR, mixed reality and spatial audio. Co-inventor on two granted Ericsson patents.">
+<meta name="theme-color" content="#0e0e11">
+<meta property="og:title" content="Mina Maddahi — UX Research for Immersive Technology">
+<meta property="og:description" content="VR, mixed reality and spatial audio. Two granted patents at Ericsson. M.Sc. Design for Immersive and Creative Technology, Stockholm University.">
+<meta property="og:image" content="assets/mina.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0e11'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='30' font-weight='700' text-anchor='middle' fill='%23e2e2fd'%3Em.%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,500&display=swap">
-<style>
-/* Layout: single column, left-aligned reading measure; a "sound field" of concentric rings anchors the hero; case studies read as research reports with a metadata strip. */
-:root {
-  --bg: #FBFBFC;
-  --surface: #FFFFFF;
-  --fg: #1E2026;
-  --muted: #5E6270;
-  --line: #E7E8EC;
-  --accent: #3446C4;
-  --accent-soft: #F0F2FB;
-  --ring: #D9DCE4;
-  --warm: #8A5A12;
-  --on-accent: #FFFFFF;
-  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
-  color-scheme: light;
-}
-* { box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; }
-.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
-a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
-p { margin: 0; max-width: 65ch; }
-.label { font-family: var(--mono); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
 
-/* nav */
-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 22px; }
-nav .name { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--fg); text-decoration: none; }
-nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; flex-wrap: wrap; }
-nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; }
-nav ul a:hover { color: var(--fg); }
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+    </nav>
+    <a class="logo" href="#top" aria-label="Mina Maddahi, back to top">mina maddahi<span>.</span></a>
+    <div class="nav-cta">
+      <a class="btn btn-light" href="#contact"><span>Get in touch</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+  </div>
+</header>
 
-/* hero */
-.hero { display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: center; padding-block: 48px 64px; }
-.hero > div { min-width: 0; }
-.eyebrow { font-family: var(--body); font-weight: 600; font-size: 13.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--warm); }
-.hero-name { margin-top: 18px; font-family: var(--serif); font-weight: 600; font-size: clamp(36px, 5vw, 60px); white-space: nowrap; line-height: 1.02; letter-spacing: -.015em; }
-.hero-name em { font-style: italic; font-weight: 500; color: var(--accent); }
-.hero .lede { margin-top: 24px; font-size: 20px; line-height: 1.65; color: var(--muted); }
-.hero-chips { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-chips span { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 9px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
-.cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
-.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 999px; font-weight: 600; font-size: 16px; text-decoration: none; color: var(--fg); background: var(--surface); border: 1px solid var(--line); }
-.btn:hover { border-color: var(--accent); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.btn.primary:hover { filter: brightness(1.1); }
-.hero .meta { margin-top: 28px; display: flex; gap: 10px 22px; flex-wrap: wrap; }
-.hero .meta span { font-family: var(--mono); font-size: 13px; color: var(--muted); }
-.hero .meta b { color: var(--fg); font-weight: 500; }
-.field { width: 100%; max-width: 260px; aspect-ratio: 1; justify-self: end; }
-.field circle.r { fill: none; stroke: var(--ring); stroke-width: 1; }
-.field .src { fill: var(--accent); }
-.field .lst { fill: var(--fg); }
-.field text { font-family: var(--mono); font-size: 9px; fill: var(--muted); }
-.field .pulse { fill: none; stroke: var(--accent); stroke-width: 1.2; opacity: 0; animation: pulse 3.2s ease-out infinite; transform-origin: 178px 72px; }
-.field .pulse.b { animation-delay: 1.6s; }
-@keyframes pulse { 0% { transform: scale(.2); opacity: .7; } 100% { transform: scale(2.4); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .field .pulse { animation: none; } }
+<main id="top">
 
-section { padding-block: 56px; border-top: 1px solid var(--line); }
-section > * { max-width: 920px; }
-section > .sec-head { max-width: none; }
-.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
-.sec-head h2 { font-size: clamp(28px, 4vw, 36px); font-weight: 700; }
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <canvas id="terrain" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <div class="chips">
+      <span class="chip"><span class="dot"></span>Available now</span>
+      <span class="chip">Stockholm, Sweden</span>
+      <span class="chip">2 granted patents · Ericsson</span>
+    </div>
+    <h1 class="h-xl split" id="hero-title">Making immersive technology feel <span class="serif">human.</span></h1>
+    <p class="lede reveal d3">I'm Mina Maddahi, a UX researcher and computer engineer working in VR, mixed reality and spatial audio. I plan studies, build my own prototypes, and turn what people experience into clear design decisions.</p>
+    <div class="hero-actions reveal d4">
+      <a class="btn btn-light" href="#work">See my work<span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></a>
+      <a class="btn btn-ghost" href="#contact">Get in touch<span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span></a>
+    </div>
+  </div>
+  <div class="hero-meta" aria-hidden="true"><span>59.33° N · 18.07° E</span><span>UX Research · XR · Spatial Audio</span></div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</section>
 
-/* about */
-.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
-.about > * { min-width: 0; }
-.about .text { display: grid; gap: 16px; }
-.skills { display: grid; gap: 18px; align-content: start; }
-.skills h3 { font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips span { font-size: 14px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
-
-/* case studies */
-.case { padding-block: 8px 48px; }
-.case + .case { border-top: 1px dashed var(--line); padding-top: 48px; }
-.case .kicker { color: var(--accent); }
-.case h3 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 700; margin-top: 8px; }
-.case .summary { margin-top: 14px; font-size: 18.5px; color: var(--muted); }
-.facts { margin-top: 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.facts div { padding: 14px 16px 14px 0; min-width: 0; }
-.facts div + div { padding-left: 16px; border-left: 1px solid var(--line); }
-.facts dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.facts dd { margin: 4px 0 0; font-size: 15px; }
-.body { margin-top: 32px; display: grid; gap: 28px; }
-.body > * { min-width: 0; }
-.body h4 { font-family: var(--display); font-size: 20px; font-weight: 600; margin: 0 0 8px; }
-.body ul { margin: 8px 0 0; padding-left: 20px; max-width: 65ch; display: grid; gap: 6px; }
-.callout { background: var(--accent-soft); border-radius: 10px; padding: 18px 20px; }
-.callout p { max-width: none; }
-
-/* rounds */
-.rounds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 12px; }
-.round { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
-.round .label { color: var(--accent); }
-.round .found { font-size: 15px; }
-.round .did { font-size: 14.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
-.round .did b { color: var(--fg); font-weight: 600; }
-
-/* diagram */
-.diagram { margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
-.diagram svg { display: block; width: 100%; min-width: 560px; height: auto; }
-.diagram .box { fill: var(--bg); stroke: var(--line); }
-.diagram .box.hi { fill: var(--accent-soft); stroke: var(--accent); }
-.diagram text { font-family: var(--body); font-size: 12.5px; fill: var(--fg); }
-.diagram text.s { font-family: var(--mono); font-size: 10px; fill: var(--muted); }
-.diagram .arr { stroke: var(--muted); stroke-width: 1.3; fill: none; }
-.diagram .head { fill: var(--muted); }
-
-.links { display: flex; gap: 10px 22px; flex-wrap: wrap; margin-top: 4px; font-size: 15.5px; }
-
-/* more work */
-.more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.mini { border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: var(--surface); display: grid; gap: 10px; align-content: start; min-width: 0; }
-.mini h3 { font-size: 21px; font-weight: 600; }
-.mini p { font-size: 15.5px; color: var(--muted); }
-
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 72px; align-items: center; padding-block: 40px 64px; }
-.about-text { margin-top: 22px; display: grid; gap: 14px; }
-.about-text p { font-size: 17.5px; color: var(--muted); }
-.portrait { margin: 0; justify-self: end; width: 100%; max-width: 300px; }
-.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; background: var(--line); }
-.about { grid-template-columns: 1fr; }
-.skills { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-@media (max-width: 760px) { .hero-name { white-space: normal; } .hero { grid-template-columns: 1fr; gap: 28px; } .portrait { order: -1; justify-self: start; max-width: 240px; } .skills { grid-template-columns: 1fr; } }
-
-.proj .question { margin-top: 10px; font-size: 15.5px; padding: 12px 14px; background: var(--accent-soft); border-radius: 8px; max-width: 65ch; }
-.proj .question b { font-weight: 600; }
-.proj-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 15px; font-weight: 500; }
-.proj .desc { margin-top: 10px; font-size: 16px; max-width: 65ch; }
-.results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 12px; }
-.result { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 14px; align-content: start; min-width: 0; }
-.result figcaption { font-size: 15px; color: var(--muted); }
-.result figcaption b { color: var(--fg); font-weight: 600; }
-.bars { display: grid; gap: 10px; }
-.bar-row { display: grid; grid-template-columns: 104px minmax(0, 1fr) 52px; gap: 10px; align-items: center; font-size: 13.5px; }
-.bar-label { color: var(--muted); }
-.bar-track { height: 14px; background: var(--bg); border-radius: 4px; overflow: hidden; }
-.bar { display: block; height: 100%; background: var(--ring); border-radius: 4px; }
-.bar.hi { background: var(--accent); }
-.bar-val { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
-@media (max-width: 760px) { .results { grid-template-columns: 1fr; } }
-.subproj { margin-top: 8px; }
-.subproj-title { font-size: clamp(22px, 3vw, 28px); font-weight: 700; margin-top: 8px; }
-.loop svg { min-width: 600px; }
-/* academic projects */
-.proj-list { display: grid; }
-.proj { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding-block: 22px; border-top: 1px solid var(--line); }
-.proj:first-child { border-top: 0; padding-top: 0; }
-.proj > div { min-width: 0; }
-.proj .yr { font-family: var(--mono); font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 4px; }
-.proj h3 { font-size: 21px; font-weight: 600; }
-.proj .tools { margin-top: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--accent); letter-spacing: .02em; }
-.proj ul { margin: 10px 0 0; padding-left: 20px; max-width: 65ch; display: grid; gap: 4px; font-size: 15.5px; color: var(--muted); }
-.proj .more-link { margin-top: 10px; font-size: 15px; }
-@media (max-width: 760px) { .proj { grid-template-columns: 1fr; gap: 4px; } }
-
-/* education */
-.edu { display: grid; gap: 18px; }
-.edu-row { display: grid; grid-template-columns: 130px 1fr; gap: 16px; }
-.edu-row > div { min-width: 0; }
-.edu-row .yr { font-family: var(--mono); font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; }
-.edu-row h3 { font-family: var(--body); font-size: 17px; font-weight: 600; }
-.edu-row p { font-size: 15px; color: var(--muted); }
-
-/* contact */
-.contact h2 { font-size: clamp(30px, 5vw, 46px); font-weight: 700; }
-.contact p { margin-top: 14px; color: var(--muted); }
-.email { margin-top: 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.email code { font-family: var(--mono); font-size: clamp(16px, 3vw, 20px); color: var(--fg); user-select: all; word-break: break-all; }
-.email button { font: 500 14px var(--body); color: var(--bg); background: var(--fg); border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
-.email button:hover { background: var(--accent); }
-.contact .links { margin-top: 18px; }
-footer { padding-block: 32px 48px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
-
-@media (max-width: 760px) {
-  .hero { grid-template-columns: 1fr; padding-block: 24px 48px; gap: 24px; }
-  .field { justify-self: start; max-width: 180px; order: -1; }
-  .about { grid-template-columns: 1fr; }
-  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .facts div:nth-child(3) { padding-left: 0; border-left: 0; }
-  .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .rounds, .more { grid-template-columns: 1fr; }
-  .edu-row { grid-template-columns: 1fr; gap: 2px; }
-}
-</style>
-
-<div class="wrap">
-  <nav aria-label="Main">
-    <a class="name" href="#top">Mina Maddahi</a>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#academic">Projects</a></li>
-      <li><a href="#about">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero" id="top">
-    <div>
-      <p class="eyebrow">About me</p>
-      <h1 class="hero-name">Hi, I'm Mina <em>Maddahi</em></h1>
-      <div class="about-text">
-        <p>I'm a UX researcher who loves understanding how people experience new technology. I plan studies, test ideas with real users, and turn what I learn into clear design decisions.</p>
-        <p>I started as a computer engineer, then completed a Master's in Design for Immersive and Creative Technology at Stockholm University. Most recently I worked in Ericsson's Audio team, where my work on VR and spatial audio led to two granted patents.</p>
-        <p>Because I can code, I build my own prototypes and work easily with developers. I'm curious, careful with details, and happiest when complex technology starts to feel simple.</p>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="#contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Get in touch</a>
-        <a class="btn" href="#work">See my work <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
-      </div>
-      <div class="meta">
-        <span><b>Stockholm</b>, Sweden</span>
-        <span><b>Available</b> now</span>
-        <span>English · Farsi · Swedish (learning)</span>
+<!-- ============ INTRO ============ -->
+<section class="section" style="padding-bottom: clamp(64px, 8vw, 110px)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Researcher · Engineer · Builder</span>
+      <h2 class="h-lg split">Where people meet <span class="serif">new technology</span></h2>
+      <p class="lede reveal d2">I started as a computer engineer, then completed a Master's in Design for Immersive and Creative Technology at Stockholm University. Most recently I worked in Ericsson's Audio team, where my work on VR and spatial audio led to two granted patents.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Granted Ericsson patents as co-inventor</div></div>
+      <div class="stat"><div class="num">MWC<small>’26</small></div><div class="lbl">Live immersive calls, Barcelona ↔ Stockholm</div></div>
+      <div class="stat"><div class="num" data-count="256">0</div><div class="lbl">Trials in a controlled VR experiment</div></div>
+      <div class="stat"><div class="num" data-count="3">0</div><div class="lbl">Rounds of user testing on a mixed reality twin</div></div>
+    </div>
+    <div class="marquee" aria-label="Organisations and tools">
+      <div class="marquee-track">
+        <span>Ericsson Research</span><span>Stockholm University</span><span>3GPP · IVAS</span><span>Mobile World Congress</span><span>Meta Quest</span><span>Varjo XR-3</span><span>Unity</span><span>Godot</span><span>Android · Kotlin</span><span>Arduino</span>
+        <span aria-hidden="true">Ericsson Research</span><span aria-hidden="true">Stockholm University</span><span aria-hidden="true">3GPP · IVAS</span><span aria-hidden="true">Mobile World Congress</span><span aria-hidden="true">Meta Quest</span><span aria-hidden="true">Varjo XR-3</span><span aria-hidden="true">Unity</span><span aria-hidden="true">Godot</span><span aria-hidden="true">Android · Kotlin</span><span aria-hidden="true">Arduino</span>
       </div>
     </div>
-    <figure class="portrait"><img src="data:image/jpeg;base64,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" alt="Portrait of Mina Maddahi" width="640" height="800"></figure>
-  </header>
+  </div>
+</section>
 
-  <section id="work">
-    <div class="sec-head">
-      <h2>Selected work</h2>
-      <span class="label">Industry · Research · Academic</span>
+<!-- ============ SELECTED WORK ============ -->
+<section class="section" id="work" style="padding-top: 0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Selected work</span>
+      <h2 class="h-lg split">Industry, research &amp; <span class="serif">academic</span></h2>
+      <p class="lede reveal d2">Each project pairs something I built with a study that showed whether it worked for real people.</p>
     </div>
 
-    <!-- Case 1 -->
-    <article class="case" id="ericsson">
-      <p class="label kicker">Case study · Ericsson Research</p>
-      <h3>Testing spatial audio in VR</h3>
+    <!-- Ericsson: HRTF -->
+    <article class="work-row">
+      <div class="work-copy reveal">
+        <div class="tagline"><b>Ericsson Research</b><span>·</span><span>Granted patent</span></div>
+        <h3 class="h-md"><a href="#case-ericsson" data-case="case-ericsson">Personal 3D sound, tuned by pointing <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+        <p>Spatial audio only feels real if it fits your own ears. I built a VR system where people tune 3D sound to themselves inside the headset, just by listening and pointing, and designed the user tests that showed how well it worked.</p>
+        <dl class="meta-grid">
+          <div><dt>Role</dt><dd>R&amp;D Intern, Audio team</dd></div>
+          <div><dt>When</dt><dd>Jun – Dec 2025</dd></div>
+          <div><dt>Methods</dt><dd>User testing, metrics design</dd></div>
+          <div><dt>Built with</dt><dd>Unity, Godot</dd></div>
+        </dl>
+        <a class="btn btn-ghost" href="#case-ericsson" data-case="case-ericsson">Read the case study<span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="stage reveal d2" data-tilt>
+        <div class="device">
+          <div class="screen">
+            <div class="screen-bar"><span class="dots"><i></i><i></i><i></i></span><span>HRTF calibration · session 04</span><span class="pill live">listening</span></div>
+            <div class="polar">
+              <svg viewBox="0 0 220 220" aria-label="Polar view: target sound direction and the direction the user points to" role="img">
+                <defs>
+                  <radialGradient id="pg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#7065f0" stop-opacity=".35"/><stop offset="1" stop-color="#7065f0" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="ray" x1="0" x2="1"><stop offset="0" stop-color="#a2b5ff" stop-opacity="0"/><stop offset="1" stop-color="#a2b5ff"/></linearGradient>
+                </defs>
+                <circle cx="110" cy="110" r="100" fill="url(#pg)"/>
+                <g fill="none" stroke="rgba(255,255,255,.12)">
+                  <circle cx="110" cy="110" r="100"/><circle cx="110" cy="110" r="70"/><circle cx="110" cy="110" r="40"/>
+                  <path d="M110 10v200M10 110h200M39 39l142 142M181 39 39 181" stroke-dasharray="2 4"/>
+                </g>
+                <g id="hrtfTarget"><circle cx="110" cy="30" r="9" fill="none" stroke="#d87756" stroke-width="1.5"/><circle cx="110" cy="30" r="3" fill="#d87756"/></g>
+                <g id="hrtfRay"><line x1="110" y1="110" x2="110" y2="30" stroke="url(#ray)" stroke-width="2.5" stroke-linecap="round"/><circle cx="110" cy="30" r="4.5" fill="#a2b5ff"/></g>
+                <g><circle cx="110" cy="110" r="13" fill="#18181d" stroke="rgba(255,255,255,.5)"/><path d="M104 106q6-7 12 0M101 112h3M116 112h3" stroke="#fff" stroke-width="1.4" fill="none"/></g>
+                <text x="110" y="8" fill="rgba(255,255,255,.45)" font-size="8" text-anchor="middle" font-family="JetBrains Mono, monospace">0°</text>
+                <text x="214" y="113" fill="rgba(255,255,255,.45)" font-size="8" text-anchor="end" font-family="JetBrains Mono, monospace">90°</text>
+              </svg>
+              <div class="readouts">
+                <div class="readout"><div class="k">Target</div><div class="v" id="rTarget">42°</div></div>
+                <div class="readout"><div class="k">Pointed</div><div class="v" id="rPoint">58°</div><div class="meter"><i id="rMeter"></i></div></div>
+                <div class="readout"><div class="k">ITD shift</div><div class="v" id="rItd">+0.12 ms</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floater" style="right: 0; top: 4%;"><strong>Point where you hear it</strong>No mics, no scans, no measuring</div>
+        <div class="floater" style="left: 2%; bottom: 6%; animation-delay: -3s;"><strong>Ericsson patent</strong>Co-inventor · granted</div>
+      </div>
+    </article>
+
+    <!-- Ericsson: IVAS -->
+    <article class="work-row flip">
+      <div class="work-copy reveal">
+        <div class="tagline"><b>Ericsson Research</b><span>·</span><span>Granted patent</span><span>·</span><span>MWC 2026</span></div>
+        <h3 class="h-md"><a href="#case-ericsson-ivas" data-case="case-ericsson" data-anchor="ivas">Making immersive calls visible <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+        <p>Immersive phone calls let you hear where each voice comes from, but sound is invisible. I built an Android app with an interactive avatar that makes spatial audio something you can see and play with. It ran in live demos at Mobile World Congress 2026.</p>
+        <dl class="meta-grid">
+          <div><dt>Standard</dt><dd>3GPP IVAS codec</dd></div>
+          <div><dt>Built with</dt><dd>Kotlin, Android Studio</dd></div>
+          <div><dt>Shown at</dt><dd>MWC 2026, Barcelona</dd></div>
+          <div><dt>Outcome</dt><dd>Granted patent</dd></div>
+        </dl>
+        <a class="btn btn-ghost" href="#case-ericsson-ivas" data-case="case-ericsson" data-anchor="ivas">Read the case study<span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="stage reveal d2">
+        <div class="phone">
+          <div class="ps">
+            <div class="notch"></div>
+            <span class="pill live" style="margin-top: 14px">IVAS · immersive</span>
+            <div class="who"><b>Immersive call</b>02:14</div>
+            <div class="orb-wrap" aria-hidden="true">
+              <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+              <div class="listener"></div>
+              <div class="avatar"></div>
+            </div>
+            <div class="route">BARCELONA ⟷ STOCKHOLM</div>
+            <div class="end" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 9c-2 0-4 .3-5.8 1L4 7.9C6.4 6.7 9.1 6 12 6s5.6.7 8 1.9L17.8 10c-1.8-.7-3.8-1-5.8-1z" transform="rotate(180 12 9)"/></svg></div>
+          </div>
+        </div>
+        <div class="floater" style="left: 4%; top: 18%;"><strong>Drag the avatar</strong>Hear the voice move around you</div>
+        <div class="floater" style="right: 2%; bottom: 14%; animation-delay: -2s;"><strong>Live at MWC 2026</strong>Over Ericsson's network</div>
+      </div>
+    </article>
+
+    <!-- TwinTurbine -->
+    <article class="work-row">
+      <div class="work-copy reveal">
+        <div class="tagline"><b>Stockholm University</b><span>·</span><span>Mixed reality</span></div>
+        <h3 class="h-md"><a href="#case-twinturbine" data-case="case-twinturbine">TwinTurbine: a shared mixed reality digital twin <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+        <p>A small physical wind turbine and its virtual twin, connected in real time. Several people can watch and control it together in mixed reality. Three rounds of user testing turned a working prototype into an engaging one.</p>
+        <dl class="meta-grid">
+          <div><dt>Team</dt><dd>4 students</dd></div>
+          <div><dt>When</dt><dd>May – Jun 2024</dd></div>
+          <div><dt>My part</dt><dd>Tangible interaction, docs</dd></div>
+          <div><dt>Tools</dt><dd>Unity, C#, Quest, Arduino</dd></div>
+        </dl>
+        <a class="btn btn-ghost" href="#case-twinturbine" data-case="case-twinturbine">Read the case study<span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="stage reveal d2" data-tilt>
+        <div class="device">
+          <div class="screen">
+            <div class="screen-bar"><span class="dots"><i></i><i></i><i></i></span><span>Twin dashboard · mixed reality</span><span class="pill live">synced</span></div>
+            <div class="twin">
+              <div class="tile span2">
+                <div class="turbine-wrap">
+                  <div>
+                    <svg class="turbine" viewBox="0 0 100 120" aria-hidden="true"><path d="M48 40 46 118h8l-2-78z" fill="#3a3a44"/><g class="blades" fill="#e2e2fd"><path d="M50 38 47 4q3-3 6 0z"/><path d="M50 38 47 4q3-3 6 0z" transform="rotate(120 50 38)"/><path d="M50 38 47 4q3-3 6 0z" transform="rotate(240 50 38)"/></g><circle cx="50" cy="38" r="4" fill="#fff"/></svg>
+                    <div class="tlabel">PHYSICAL</div>
+                  </div>
+                  <div>
+                    <svg class="turbine virtual" viewBox="0 0 100 120" aria-hidden="true"><path d="M48 40 46 118h8l-2-78z" fill="none" stroke="#a2b5ff" stroke-dasharray="2 2"/><g class="blades" fill="none" stroke="#a2b5ff" stroke-width="1.2"><path d="M50 38 47 4q3-3 6 0z"/><path d="M50 38 47 4q3-3 6 0z" transform="rotate(120 50 38)"/><path d="M50 38 47 4q3-3 6 0z" transform="rotate(240 50 38)"/></g><circle cx="50" cy="38" r="4" fill="none" stroke="#a2b5ff"/></svg>
+                    <div class="tlabel">VIRTUAL TWIN</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile"><div class="k">Wind · SMHI</div><div class="v" id="tWind">6.4 m/s</div></div>
+              <div class="tile"><div class="k">Output</div><div class="v" id="tVolt">2.31 V</div></div>
+              <div class="tile span2"><div class="k">Voltage · live</div><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7065f0" stop-opacity=".5"/><stop offset="1" stop-color="#7065f0" stop-opacity="0"/></linearGradient></defs><path id="sparkFill" fill="url(#sg)"/><path id="sparkLine" fill="none" stroke="#a2b5ff" stroke-width="1.5"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="floater" style="right: 0; top: 2%;"><strong>Multi-user session</strong>Watch &amp; control together</div>
+      </div>
+    </article>
+
+    <!-- AVeRT -->
+    <article class="work-row flip">
+      <div class="work-copy reveal">
+        <div class="tagline"><b>Stockholm University</b><span>·</span><span>Research paper 2024</span></div>
+        <h3 class="h-md"><a href="#case-avert" data-case="case-avert">AVeRT: helping remote operators guide self-driving cars <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></h3>
+        <p>When a self-driving car meets something it can't judge, a remote operator steps in. We ran a controlled VR experiment to find which camera view and which kind of task help operators decide faster and more accurately, then turned it into a research paper.</p>
+        <dl class="meta-grid">
+          <div><dt>Method</dt><dd>2×2 within-subject</dd></div>
+          <div><dt>Participants</dt><dd>16 people, 256 trials</dd></div>
+          <div><dt>Hardware</dt><dd>Varjo XR-3, hand tracking</dd></div>
+          <div><dt>Analysis</dt><dd>t-tests, RM-ANOVA</dd></div>
+        </dl>
+        <a class="btn btn-ghost" href="#case-avert" data-case="case-avert">Read the case study<span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="stage reveal d2">
+        <div class="bench" style="width: min(100%, 520px)">
+          <div class="bench-card">
+            <h4>Task completion time</h4>
+            <div class="sub">Mean seconds per task · lower is better</div>
+            <div class="bar-row"><span>Overhead view</span><span class="val">30.7 s</span><span class="track"><i data-w="78"></i></span></div>
+            <div class="bar-row"><span>Driver's seat</span><span class="val">39.1 s</span><span class="track"><i class="dim" data-w="100"></i></span></div>
+            <div class="p">Overhead ≈ 8 s faster · p = 0.008</div>
+          </div>
+          <div class="bench-card">
+            <h4>Error rate by task</h4>
+            <div class="sub">Share of trials with a mistake · lower is better</div>
+            <div class="bar-row"><span>Marking safe objects</span><span class="val">30%</span><span class="track"><i data-w="30"></i></span></div>
+            <div class="bar-row"><span>Marking unsafe objects</span><span class="val">49%</span><span class="track"><i class="warm" data-w="49"></i></span></div>
+            <div class="p">Spotting danger is harder · p &lt; 0.001</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BAND ============ -->
+<section class="band" aria-label="Philosophy">
+  <div class="band-inner reveal">
+    <blockquote>I'm happiest when complex technology starts to feel <span class="serif">simple.</span></blockquote>
+    <cite>Mina Maddahi</cite>
+  </div>
+</section>
+
+<!-- ============ ACADEMIC PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Academic projects · 2023 – 2024</span>
+      <h2 class="h-lg split">Built at <span class="serif">Stockholm University</span></h2>
+      <p class="lede reveal d2">Hands-on XR prototypes that mix eye tracking, tangible interfaces and real-time simulation.</p>
+    </div>
+    <div class="projects">
+      <article class="card reveal">
+        <svg class="art" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#a2b5ff" stroke-width=".6"><ellipse cx="50" cy="50" rx="44" ry="26"/><circle cx="50" cy="50" r="16"/><circle cx="50" cy="50" r="6" fill="#a2b5ff"/></g></svg>
+        <span class="year">2024</span>
+        <h3>Different Eye Interaction in Virtual Reality</h3>
+        <div class="stack"><span>Unity</span><span>Meta VR headset</span><span>C#</span></div>
+        <ul>
+          <li>Developed a fully immersive VR project exploring different methods of eye interaction.</li>
+          <li>Focused on dwell time, gaze duration and pattern recognition using eye-tracking technology.</li>
+        </ul>
+      </article>
+      <article class="card reveal d1">
+        <svg class="art" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#a2b5ff" stroke-width=".6"><path d="M50 50 46 6q4-4 8 0z"/><path d="M50 50 46 6q4-4 8 0z" transform="rotate(120 50 50)"/><path d="M50 50 46 6q4-4 8 0z" transform="rotate(240 50 50)"/><circle cx="50" cy="50" r="4"/></g></svg>
+        <span class="year">2024</span>
+        <h3>TwinTurbine: Digital Twin for Tangible Turbine Simulation</h3>
+        <div class="stack"><span>Unity</span><span>Meta VR headset</span><span>C#</span><span>Python</span></div>
+        <p>A digital twin that lets people experience how a wind turbine works in mixed reality. Several users can monitor and control it together, see real-time data and get immediate feedback, using a scaled physical model.</p>
+        <ul>
+          <li>Created a digital twin of a tangible turbine connected to Unity for real-time XR simulation.</li>
+          <li>Developed interaction mechanisms that let users control the turbine through tangible input.</li>
+          <li>Documented the project lifecycle, focusing on XR design principles and physical integration.</li>
+        </ul>
+        <div class="links">
+          <a class="link-arrow" href="#case-twinturbine" data-case="case-twinturbine">Case study →</a>
+          <a class="link-arrow" href="https://www.youtube.com/watch?v=tg5tRyCmQH8" target="_blank" rel="noopener">Video ↗</a>
+          <a class="link-arrow" href="https://gitea.dsv.su.se/ExtralityLab/DCDC24-TwinTurbine" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <svg class="art" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#a2b5ff" stroke-width=".6"><circle cx="50" cy="50" r="5" fill="#a2b5ff"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="40"/><circle cx="72" cy="50" r="2.5" fill="#d87756"/><circle cx="20" cy="74" r="2.5" fill="#d87756"/><circle cx="78" cy="22" r="2.5" fill="#d87756"/></g></svg>
+        <span class="year">2023</span>
+        <h3>Atom Craft: A VR and Tangible Interaction Project</h3>
+        <div class="stack"><span>Unity</span><span>Meta VR headset</span><span>C#</span><span>Python</span></div>
+        <p>An educational VR experience about what atoms are made of. Users build a hydrogen atom (easy) and a lithium atom (harder) with a physical device, discovering or revising the Bohr model in a hands-on way.</p>
+        <ul>
+          <li>Prototyped a tangible interface integrated with a VR environment using Unity and Python.</li>
+          <li>Set up real-time communication between the tangible device and the VR system.</li>
+          <li>Wrote full documentation covering technical workflows and interaction design.</li>
+        </ul>
+        <div class="links"><a class="link-arrow" href="https://gitea.dsv.su.se/ExtralityLab/DET24-AtomCraft" target="_blank" rel="noopener">Code &amp; documentation ↗</a></div>
+      </article>
+      <article class="card reveal d1">
+        <svg class="art" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#a2b5ff" stroke-width=".6"><path d="M20 70 50 85 80 70 80 35 50 20 20 35z"/><path d="M20 35 50 50 80 35M50 50v35"/></g></svg>
+        <span class="year">2023</span>
+        <h3>2D and 3D Game Development in Unity</h3>
+        <div class="stack"><span>Unity 2D &amp; 3D</span><span>C#</span></div>
+        <ul>
+          <li>Designed and developed several individual projects focused on gameplay mechanics, physics interactions and visual effects.</li>
+          <li>Built strong skills in Unity's 2D and 3D frameworks, problem solving and creative thinking.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about" style="padding-top: 0">
+  <div class="wrap about">
+    <div class="portrait reveal">
+      <div class="frame"><img src="assets/mina.jpg" alt="Portrait of Mina Maddahi" width="640" height="800" loading="lazy"></div>
+      <div class="tag"><span><b>Mina Maddahi</b>UX Researcher · XR</span><span class="pill live">Available</span></div>
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow reveal">About me</span>
+      <h2 class="h-lg split" style="margin: 18px 0 30px">Curious, careful, and <span class="serif">hands-on.</span></h2>
+      <p class="reveal">I'm a UX researcher who loves understanding how people experience new technology. I plan studies, test ideas with real users, and turn what I learn into clear design decisions.</p>
+      <p class="reveal d1">Because I can code, I build my own prototypes and work easily with developers. I'm curious, careful with details, and happiest when complex technology starts to feel simple.</p>
+      <div class="facts reveal d2">
+        <div><div class="k">Based in</div><div class="v">Stockholm, Sweden</div></div>
+        <div><div class="k">Status</div><div class="v">Available now</div></div>
+        <div><div class="k">Languages</div><div class="v">English · Farsi · Swedish (learning)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS & EDUCATION ============ -->
+<section class="section" id="skills" style="padding-top: 0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Skills &amp; education</span>
+      <h2 class="h-lg split">Research rigour, <span class="serif">engineering depth</span></h2>
+    </div>
+    <div class="skills">
+      <div class="skill-card reveal">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2e2fd" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></div>
+        <h3>Research</h3>
+        <div class="tags"><span>User testing</span><span>Test design</span><span>Metrics &amp; success criteria</span><span>Controlled studies</span><span>Statistics</span><span>Technical writing</span></div>
+      </div>
+      <div class="skill-card reveal d1">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2e2fd" stroke-width="1.6"><path d="M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-3l-3-3-3 3H6a3 3 0 0 1-3-3z"/></svg></div>
+        <h3>Prototyping</h3>
+        <div class="tags"><span>Unity</span><span>Godot</span><span>VR / AR</span><span>Android</span><span>Arduino</span></div>
+      </div>
+      <div class="skill-card reveal d2">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2e2fd" stroke-width="1.6"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+        <h3>Code</h3>
+        <div class="tags"><span>Python</span><span>C#</span><span>Kotlin</span><span>HTML</span><span>Git</span></div>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="edu-item featured reveal">
+        <span class="yr">2023 – 2025</span>
+        <div><h3>Master's, Design for Immersive and Creative Technology</h3><p>Stockholm University</p></div>
+      </div>
+      <div class="edu-item reveal d1">
+        <span class="yr">2010 – 2016</span>
+        <div><h3>Bachelor's, Computer Engineering</h3><p>Raja University, Iran</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="closing" id="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal">Contact</span>
+    <h2 class="h-xl split" style="margin-top: 20px">Let's <span class="serif grad-text">talk.</span></h2>
+    <p class="lede reveal d2">Open to UX research and design roles in Stockholm and remote.</p>
+    <div class="mail-box reveal d3">
+      <a class="mail" id="mail" href="mailto:maddahiimina@gmail.com">maddahiimina@gmail.com</a>
+      <button class="copy-btn" id="copy" type="button">Copy email</button>
+    </div>
+    <div class="socials reveal d4">
+      <a class="link-arrow" href="https://www.linkedin.com/in/mina-maddahi-9b90b5264" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="link-arrow" href="mailto:maddahiimina@gmail.com">Email ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="logo" style="justify-self: auto">mina maddahi<span>.</span></span>
+    <nav aria-label="Footer"><a href="#work">Work</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <span>© 2026 Mina Maddahi · Stockholm</span>
+  </div>
+</footer>
+
+<!-- ============ CASE STUDY: ERICSSON ============ -->
+<dialog class="case" id="case-ericsson" aria-labelledby="ce-title">
+  <div class="case-scroll">
+    <div class="case-top"><span>Case study · Ericsson Research</span><button class="close-btn" data-close aria-label="Close case study"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="case-body">
+      <span class="eyebrow">Ericsson Research · Audio team</span>
+      <h2 id="ce-title">Testing spatial audio in VR</h2>
       <p class="summary">A VR system with real-time 3D spatial audio and an Android companion app. I built it, set it up across devices, and designed the user tests that showed how well it worked.</p>
-      <dl class="facts">
+      <dl class="meta-grid">
         <div><dt>Role</dt><dd>R&amp;D Intern, Audio team</dd></div>
         <div><dt>When</dt><dd>Jun – Dec 2025</dd></div>
         <div><dt>Methods</dt><dd>User testing, metrics design</dd></div>
         <div><dt>Outcome</dt><dd>2 granted patents</dd></div>
       </dl>
-      <div class="body">
-        <div>
-          <div class="subproj" id="hrtf">
-            <p class="label kicker">Project 1 · Granted patent</p>
-            <h3 class="subproj-title">HRTF personalization with real-time ITD adjustment</h3>
-            <p class="summary">Spatial audio only feels real if it fits your own ears. This project lets people tune 3D sound to themselves inside the headset, just by listening and pointing.</p>
-          </div>
-          <div class="body">
-            <div>
-              <h4>The problem</h4>
-              <p>In VR, sound is placed in 3D space using filters called HRTFs. They model how sound reaches our two ears. But every head and ear is different, so a standard filter can make sounds seem to come from the wrong direction. The usual ways to personalise it are slow or hard: measuring with microphones in the ears for hours, scanning the ears, or taking body measurements. None of these work when someone just puts on a headset.</p>
-            </div>
-            <div>
-              <h4>The idea</h4>
-              <p>Turn calibration into a short listening task inside VR. The user hears a sound and points to where it seems to come from. If they point too far or not far enough, the system adjusts the timing difference between the two ears (the ITD) and plays the sound again. It repeats until the sound lands where it should. The user never takes off the headset or measures anything.</p>
-              <div class="diagram loop">
-                <svg viewBox="0 0 700 150" role="img" aria-label="Calibration loop: play a sound from a known direction, the user points where they hear it, the system compares the two directions, adjusts the ear timing, and repeats until they match.">
-                  <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-                  <rect class="box" x="10" y="20" width="140" height="56" rx="8"/>
-                  <text x="80" y="45" text-anchor="middle">Play a sound</text>
-                  <text class="s" x="80" y="62" text-anchor="middle">from a known direction</text>
-                  <rect class="box hi" x="190" y="20" width="140" height="56" rx="8"/>
-                  <text x="260" y="45" text-anchor="middle">User points</text>
-                  <text class="s" x="260" y="62" text-anchor="middle">where they hear it</text>
-                  <rect class="box" x="370" y="20" width="140" height="56" rx="8"/>
-                  <text x="440" y="45" text-anchor="middle">Compare</text>
-                  <text class="s" x="440" y="62" text-anchor="middle">heard vs. true direction</text>
-                  <rect class="box" x="550" y="20" width="140" height="56" rx="8"/>
-                  <text x="620" y="45" text-anchor="middle">Adjust ear timing</text>
-                  <text class="s" x="620" y="62" text-anchor="middle">until they match</text>
-                  <path class="arr" d="M150 48 H188" marker-end="url(#ah2)"/>
-                  <path class="arr" d="M330 48 H368" marker-end="url(#ah2)"/>
-                  <path class="arr" d="M510 48 H548" marker-end="url(#ah2)"/>
-                  <path class="arr" d="M620 76 V118 H80 V78" marker-end="url(#ah2)"/>
-                  <text class="s" x="350" y="136" text-anchor="middle">repeat until the sound is heard in the right place</text>
-                </svg>
-              </div>
-            </div>
-            <div>
-              <h4>Why it matters for users</h4>
-              <ul>
-                <li><b>No equipment and no measuring.</b> Everything happens with the headset and headphones people already wear.</li>
-                <li><b>Fits into the experience.</b> It can run as a short setup step before a game or a meeting, or any time sound feels off.</li>
-                <li><b>Simple to do.</b> The only task is "point where you hear it", which anyone can understand.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>What I did</h4>
-              <ul>
-                <li><b>Built the entire 3D side of the project on my own:</b> a VR framework where users interact with objects and hear real-time 3D sound from them.</li>
-                <li>Created the interactive scenes in Unity and Godot that the calibration runs in.</li>
-                <li>Set up and tested the system across headsets and audio hardware.</li>
-                <li>Designed and ran user sessions, measuring how accurately people located sounds and how natural the audio felt.</li>
-              </ul>
-            </div>
-            <div class="callout">
-              <p><b>Outcome.</b> The method was granted as an Ericsson patent, with me as a co-inventor.</p>
-            </div>
-          </div>
 
-          <div class="subproj" id="ivas" style="margin-top:56px; padding-top:40px; border-top:1px dashed var(--line)">
-            <p class="label kicker">Project 2 · Granted patent · Shown at MWC 2026</p>
-            <h3 class="subproj-title">Smooth transition for immersive audio</h3>
-            <p class="summary">Immersive phone calls let you hear where each voice comes from. I built an Android app that makes that spatial sound visible and interactive, and it was used in live demos at Mobile World Congress 2026.</p>
-          </div>
-          <div class="body">
-            <div>
-              <h4>The context</h4>
-              <p>A new 3GPP standard for mobile calls, the IVAS codec (Immersive Voice and Audio Services), brings spatial audio to everyday calls. Instead of a flat voice, you can hear people and sounds around you in 3D. The challenge is that sound is invisible. When you show the technology to people, especially in a busy, noisy setting, it is hard for them to understand what is happening and why it matters.</p>
-            </div>
-            <div>
-              <h4>What I built</h4>
-              <ul>
-                <li><b>A new Android app, built from scratch</b> in Kotlin with Android Studio, to visualise immersive audio during a call.</li>
-                <li><b>An interactive avatar</b> that represents the audio in space. Users can interact with it and immediately hear how the sound changes, so the 3D effect becomes something you can see and play with.</li>
-                <li>Integrated the app with the spatial audio and tested it together with the headsets and audio hardware.</li>
-              </ul>
-            </div>
-            <div class="callout">
-              <p><b>Outcome.</b> The work was used in live immersive calls between Barcelona and Stockholm over Ericsson's network at MWC 2026, in a focus session with other 3GPP partners. It also led to a granted patent, with me as a co-inventor.</p>
-            </div>
-            <div>
-              <h4>What I took away</h4>
-              <p>A good visual turns an abstract technology into an experience people understand in seconds. Designing for a live demo also taught me to keep interactions simple and robust, because there is no second chance in front of an audience.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      <div class="kicker">Project 1 · Granted patent</div>
+      <h4>HRTF personalization with real-time ITD adjustment</h4>
+      <p>Spatial audio only feels real if it fits your own ears. This project lets people tune 3D sound to themselves inside the headset, just by listening and pointing.</p>
+      <h3>The problem</h3>
+      <p>In VR, sound is placed in 3D space using filters called HRTFs. They model how sound reaches our two ears. But every head and ear is different, so a standard filter can make sounds seem to come from the wrong direction. The usual ways to personalise it are slow or hard: measuring with microphones in the ears for hours, scanning the ears, or taking body measurements. None of these work when someone just puts on a headset.</p>
+      <h3>The idea</h3>
+      <p>Turn calibration into a short listening task inside VR. The user hears a sound and points to where it seems to come from. If they point too far or not far enough, the system adjusts the timing difference between the two ears (the ITD) and plays the sound again. It repeats until the sound lands where it should. The user never takes off the headset or measures anything.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 150" role="img" aria-label="Calibration loop: play a sound from a known direction, the user points where they hear it, the system compares the two directions, adjusts the ear timing, and repeats until they match.">
+          <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+          <rect class="box" x="10" y="20" width="140" height="56" rx="8"/><text x="80" y="45" text-anchor="middle">Play a sound</text><text class="s" x="80" y="62" text-anchor="middle">from a known direction</text>
+          <rect class="box hi" x="190" y="20" width="140" height="56" rx="8"/><text x="260" y="45" text-anchor="middle">User points</text><text class="s" x="260" y="62" text-anchor="middle">where they hear it</text>
+          <rect class="box" x="370" y="20" width="140" height="56" rx="8"/><text x="440" y="45" text-anchor="middle">Compare</text><text class="s" x="440" y="62" text-anchor="middle">heard vs. true direction</text>
+          <rect class="box" x="550" y="20" width="140" height="56" rx="8"/><text x="620" y="45" text-anchor="middle">Adjust ear timing</text><text class="s" x="620" y="62" text-anchor="middle">until they match</text>
+          <path class="arr" d="M150 48 H188" marker-end="url(#ah2)"/><path class="arr" d="M330 48 H368" marker-end="url(#ah2)"/><path class="arr" d="M510 48 H548" marker-end="url(#ah2)"/><path class="arr" d="M620 76 V118 H80 V78" marker-end="url(#ah2)"/>
+          <text class="s" x="350" y="136" text-anchor="middle">repeat until the sound is heard in the right place</text>
+        </svg>
+      </figure>
+      <h3>Why it matters for users</h3>
+      <ul>
+        <li><b>No equipment and no measuring.</b> Everything happens with the headset and headphones people already wear.</li>
+        <li><b>Fits into the experience.</b> It can run as a short setup step before a game or a meeting, or any time sound feels off.</li>
+        <li><b>Simple to do.</b> The only task is "point where you hear it", which anyone can understand.</li>
+      </ul>
+      <h3>What I did</h3>
+      <ul>
+        <li>Built the entire 3D side of the project on my own: a VR framework where users interact with objects and hear real-time 3D sound from them.</li>
+        <li>Created the interactive scenes in Unity and Godot that the calibration runs in.</li>
+        <li>Set up and tested the system across headsets and audio hardware.</li>
+        <li>Designed and ran user sessions, measuring how accurately people located sounds and how natural the audio felt.</li>
+      </ul>
+      <p class="outcome"><b>Outcome.</b> The method was granted as an Ericsson patent, with me as a co-inventor.</p>
 
-    <!-- Case 2 -->
-    <article class="case" id="twinturbine">
-      <p class="label kicker">Case study · Stockholm University</p>
-      <h3>TwinTurbine: a shared mixed reality digital twin</h3>
+      <div class="kicker" id="ivas">Project 2 · Granted patent · Shown at MWC 2026</div>
+      <h4>Smooth transition for immersive audio</h4>
+      <p>Immersive phone calls let you hear where each voice comes from. I built an Android app that makes that spatial sound visible and interactive, and it was used in live demos at Mobile World Congress 2026.</p>
+      <h3>The context</h3>
+      <p>A new 3GPP standard for mobile calls, the IVAS codec (Immersive Voice and Audio Services), brings spatial audio to everyday calls. Instead of a flat voice, you can hear people and sounds around you in 3D. The challenge is that sound is invisible. When you show the technology to people, especially in a busy, noisy setting, it is hard for them to understand what is happening and why it matters.</p>
+      <h3>What I built</h3>
+      <ul>
+        <li>A new Android app, built from scratch in Kotlin with Android Studio, to visualise immersive audio during a call.</li>
+        <li>An interactive avatar that represents the audio in space. Users can interact with it and immediately hear how the sound changes, so the 3D effect becomes something you can see and play with.</li>
+        <li>Integrated the app with the spatial audio and tested it together with the headsets and audio hardware.</li>
+      </ul>
+      <p class="outcome"><b>Outcome.</b> The work was used in live immersive calls between Barcelona and Stockholm over Ericsson's network at MWC 2026, in a focus session with other 3GPP partners. It also led to a granted patent, with me as a co-inventor.</p>
+      <h3>What I took away</h3>
+      <blockquote>A good visual turns an abstract technology into an experience people understand in seconds.</blockquote>
+      <p>Designing for a live demo also taught me to keep interactions simple and robust, because there is no second chance in front of an audience.</p>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ CASE STUDY: TWINTURBINE ============ -->
+<dialog class="case" id="case-twinturbine" aria-labelledby="ct-title">
+  <div class="case-scroll">
+    <div class="case-top"><span>Case study · Stockholm University</span><button class="close-btn" data-close aria-label="Close case study"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="case-body">
+      <span class="eyebrow">Stockholm University · Mixed reality</span>
+      <h2 id="ct-title">TwinTurbine: a shared mixed reality digital twin</h2>
       <p class="summary">A small physical wind turbine and its virtual twin, connected in real time. Several people can watch and control it together in mixed reality. Three rounds of user testing turned a working prototype into an engaging one.</p>
-      <dl class="facts">
+      <dl class="meta-grid">
         <div><dt>Team</dt><dd>4 students</dd></div>
         <div><dt>When</dt><dd>May – Jun 2024</dd></div>
         <div><dt>My part</dt><dd>Tangible interaction, documentation</dd></div>
         <div><dt>Tools</dt><dd>Unity, C#, Meta Quest, Arduino</dd></div>
       </dl>
-      <div class="body">
-        <div>
-          <h4>The problem</h4>
-          <p>Wind turbines are hard to inspect and hard to learn about. Technicians often have to travel to the site, which is slow, costly and sometimes dangerous. Students mostly learn from textbooks and still images, which makes it hard to connect real data to what a turbine actually does.</p>
-        </div>
-        <div>
-          <h4>Who we designed for</h4>
-          <ul>
-            <li><b>Engineers and technicians</b>, who need to monitor turbines remotely and diagnose problems quickly.</li>
-            <li><b>Teachers and students</b>, who need a safe, hands-on way to explore how turbines work.</li>
-            <li><b>First-time visitors</b>, who need clear guidance to understand a complex system.</li>
-          </ul>
-        </div>
-        <div>
-          <h4>How the physical and virtual turbines connect</h4>
-          <p>Live wind data turns both turbines. The electricity the physical turbine makes is measured and shown on a dashboard inside mixed reality.</p>
-          <div class="diagram">
-            <svg viewBox="0 0 700 200" role="img" aria-label="System diagram: SMHI wind data goes to the Unity mixed reality app, which sends direction through the ESP32 and Arduino to a servo that turns the physical turbine. A light sensor on the turbine sends voltage back through the ESP32 to the dashboard.">
-              <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-              <rect class="box" x="10" y="20" width="120" height="56" rx="8"/>
-              <text x="70" y="45" text-anchor="middle">SMHI weather</text>
-              <text class="s" x="70" y="62" text-anchor="middle">wind direction, speed</text>
-              <rect class="box hi" x="190" y="20" width="150" height="56" rx="8"/>
-              <text x="265" y="45" text-anchor="middle">Mixed reality app</text>
-              <text class="s" x="265" y="62" text-anchor="middle">Unity · Meta Quest</text>
-              <rect class="box" x="400" y="20" width="120" height="56" rx="8"/>
-              <text x="460" y="45" text-anchor="middle">ESP32</text>
-              <text class="s" x="460" y="62" text-anchor="middle">Wi-Fi · WebSockets</text>
-              <rect class="box" x="570" y="20" width="120" height="56" rx="8"/>
-              <text x="630" y="45" text-anchor="middle">Arduino + servo</text>
-              <text class="s" x="630" y="62" text-anchor="middle">turns to the wind</text>
-              <rect class="box hi" x="570" y="124" width="120" height="56" rx="8"/>
-              <text x="630" y="149" text-anchor="middle">Physical turbine</text>
-              <text class="s" x="630" y="166" text-anchor="middle">generator + light</text>
-              <rect class="box" x="400" y="124" width="120" height="56" rx="8"/>
-              <text x="460" y="149" text-anchor="middle">Light sensor</text>
-              <text class="s" x="460" y="166" text-anchor="middle">light → voltage</text>
-              <rect class="box" x="190" y="124" width="150" height="56" rx="8"/>
-              <text x="265" y="149" text-anchor="middle">Live dashboard</text>
-              <text class="s" x="265" y="166" text-anchor="middle">voltage, wind, location</text>
-              <path class="arr" d="M130 48 H188" marker-end="url(#ah)"/>
-              <path class="arr" d="M340 48 H398" marker-end="url(#ah)"/>
-              <path class="arr" d="M520 48 H568" marker-end="url(#ah)"/>
-              <path class="arr" d="M630 76 V122" marker-end="url(#ah)"/>
-              <path class="arr" d="M570 152 H522" marker-end="url(#ah)"/>
-              <path class="arr" d="M400 152 H342" marker-end="url(#ah)"/>
-            </svg>
-          </div>
-        </div>
-        <div>
-          <h4>What testing changed</h4>
-          <div class="rounds">
-            <div class="round"><span class="label">Round 1</span><p class="found">The system worked, but people found it hard to follow what was happening.</p><p class="did"><b>Change:</b> added audio narration to explain each step.</p></div>
-            <div class="round"><span class="label">Round 2</span><p class="found">Even with a guide avatar and narration, people got bored and lost interest.</p><p class="did"><b>Change:</b> more engaging visuals and a clearer, redesigned dashboard.</p></div>
-            <div class="round"><span class="label">Round 3</span><p class="found">External users tried it together in a shared multi-user session.</p><p class="did"><b>Outcome:</b> overall positive feedback.</p></div>
-          </div>
-        </div>
-        <div>
-          <h4>What I took away</h4>
-          <p>A system that works technically is only the start. Users needed guidance and something to keep them interested, and we only discovered that by testing. Each round changed the design in a way we had not predicted.</p>
-        </div>
-        <div class="links">
-          <a href="https://youtu.be/tg5tRyCmQH8" target="_blank" rel="noopener">Watch the demo video ↗</a>
-          <a href="https://gitea.dsv.su.se/ExtralityLab/DCDC24-TwinTurbine" target="_blank" rel="noopener">Project documentation ↗</a>
-        </div>
+      <h3>The problem</h3>
+      <p>Wind turbines are hard to inspect and hard to learn about. Technicians often have to travel to the site, which is slow, costly and sometimes dangerous. Students mostly learn from textbooks and still images, which makes it hard to connect real data to what a turbine actually does.</p>
+      <h3>Who we designed for</h3>
+      <ul>
+        <li><b>Engineers and technicians</b>, who need to monitor turbines remotely and diagnose problems quickly.</li>
+        <li><b>Teachers and students</b>, who need a safe, hands-on way to explore how turbines work.</li>
+        <li><b>First-time visitors</b>, who need clear guidance to understand a complex system.</li>
+      </ul>
+      <h3>How the physical and virtual turbines connect</h3>
+      <p>Live wind data turns both turbines. The electricity the physical turbine makes is measured and shown on a dashboard inside mixed reality.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 200" role="img" aria-label="System diagram: SMHI wind data goes to the Unity mixed reality app, which sends direction through the ESP32 and Arduino to a servo that turns the physical turbine. A light sensor on the turbine sends voltage back through the ESP32 to the dashboard.">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+          <rect class="box" x="10" y="20" width="120" height="56" rx="8"/><text x="70" y="45" text-anchor="middle">SMHI weather</text><text class="s" x="70" y="62" text-anchor="middle">wind direction, speed</text>
+          <rect class="box hi" x="190" y="20" width="150" height="56" rx="8"/><text x="265" y="45" text-anchor="middle">Mixed reality app</text><text class="s" x="265" y="62" text-anchor="middle">Unity · Meta Quest</text>
+          <rect class="box" x="400" y="20" width="120" height="56" rx="8"/><text x="460" y="45" text-anchor="middle">ESP32</text><text class="s" x="460" y="62" text-anchor="middle">Wi-Fi · WebSockets</text>
+          <rect class="box" x="570" y="20" width="120" height="56" rx="8"/><text x="630" y="45" text-anchor="middle">Arduino + servo</text><text class="s" x="630" y="62" text-anchor="middle">turns to the wind</text>
+          <rect class="box hi" x="570" y="124" width="120" height="56" rx="8"/><text x="630" y="149" text-anchor="middle">Physical turbine</text><text class="s" x="630" y="166" text-anchor="middle">generator + light</text>
+          <rect class="box" x="400" y="124" width="120" height="56" rx="8"/><text x="460" y="149" text-anchor="middle">Light sensor</text><text class="s" x="460" y="166" text-anchor="middle">light → voltage</text>
+          <rect class="box" x="190" y="124" width="150" height="56" rx="8"/><text x="265" y="149" text-anchor="middle">Live dashboard</text><text class="s" x="265" y="166" text-anchor="middle">voltage, wind, location</text>
+          <path class="arr" d="M130 48 H188" marker-end="url(#ah)"/><path class="arr" d="M340 48 H398" marker-end="url(#ah)"/><path class="arr" d="M520 48 H568" marker-end="url(#ah)"/><path class="arr" d="M630 76 V122" marker-end="url(#ah)"/><path class="arr" d="M570 152 H522" marker-end="url(#ah)"/><path class="arr" d="M400 152 H342" marker-end="url(#ah)"/>
+        </svg>
+      </figure>
+      <h3>What testing changed</h3>
+      <div class="rounds">
+        <div class="round"><div class="n">Round 1</div><p>The system worked, but people found it hard to follow what was happening.</p><p class="chg"><b>Change:</b> added audio narration to explain each step.</p></div>
+        <div class="round"><div class="n">Round 2</div><p>Even with a guide avatar and narration, people got bored and lost interest.</p><p class="chg"><b>Change:</b> more engaging visuals and a clearer, redesigned dashboard.</p></div>
+        <div class="round"><div class="n">Round 3</div><p>External users tried it together in a shared multi-user session.</p><p class="chg"><b>Outcome:</b> overall positive feedback.</p></div>
       </div>
-    </article>
+      <h3>What I took away</h3>
+      <blockquote>A system that works technically is only the start.</blockquote>
+      <p>Users needed guidance and something to keep them interested, and we only discovered that by testing. Each round changed the design in a way we had not predicted.</p>
+      <div class="links-row">
+        <a class="link-arrow" href="https://youtu.be/tg5tRyCmQH8" target="_blank" rel="noopener">Watch the demo video ↗</a>
+        <a class="link-arrow" href="https://gitea.dsv.su.se/ExtralityLab/DCDC24-TwinTurbine" target="_blank" rel="noopener">Project documentation ↗</a>
+      </div>
+    </div>
+  </div>
+</dialog>
 
-
-    <!-- Case 3 -->
-    <article class="case" id="avert">
-      <p class="label kicker">Case study · Stockholm University · Academic project → research paper</p>
-      <h3>AVeRT: Autonomous Vehicle Remote Tele-Assistance</h3>
+<!-- ============ CASE STUDY: AVERT ============ -->
+<dialog class="case" id="case-avert" aria-labelledby="ca-title">
+  <div class="case-scroll">
+    <div class="case-top"><span>Case study · Research paper</span><button class="close-btn" data-close aria-label="Close case study"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="case-body">
+      <span class="eyebrow">Stockholm University · Academic project → research paper</span>
+      <h2 id="ca-title">AVeRT: Autonomous Vehicle Remote Tele-Assistance</h2>
       <p class="summary">When a self-driving car meets something it can't judge, a remote operator steps in. We ran a controlled VR experiment to find out which camera view and which kind of task help operators decide faster and more accurately. The project started as a group course project, and we then turned it into a research paper.</p>
-      <dl class="facts">
+      <dl class="meta-grid">
         <div><dt>Team</dt><dd>Group project</dd></div>
         <div><dt>Output</dt><dd>Research paper (2024)</dd></div>
-        <div><dt>Method</dt><dd>2×2 within-subject experiment</dd></div>
+        <div><dt>Method</dt><dd>2×2 within-subject</dd></div>
         <div><dt>Participants</dt><dd>16 people, 256 trials</dd></div>
       </dl>
-      <div class="body">
-        <div>
-          <h4>The problem</h4>
-          <p>Self-driving cars still get stuck in unclear situations, such as debris on the road or unexpected roadworks. A remote operator then has to tell the car what is safe to pass and what is not. The interface they use affects how quickly and how correctly they decide, and these decisions carry real safety stakes.</p>
+      <h3>The problem</h3>
+      <p>Self-driving cars still get stuck in unclear situations, such as debris on the road or unexpected roadworks. A remote operator then has to tell the car what is safe to pass and what is not. The interface they use affects how quickly and how correctly they decide, and these decisions carry real safety stakes.</p>
+      <h3>Research question</h3>
+      <blockquote>How do task type (marking safe vs. unsafe objects) and camera view (driver's seat vs. overhead roof camera) affect task completion time and error rates, including false positives and false negatives?</blockquote>
+      <h3>How we studied it</h3>
+      <ol>
+        <li>Built 16 VR road scenes in Unity for the Varjo XR-3 headset. In each one, a car has stopped and needs help.</li>
+        <li>Participants marked objects with a hand pinch gesture and a pointing ray, without controllers.</li>
+        <li>Every participant tried all four combinations (2 tasks × 2 camera views), in a counterbalanced order to reduce learning effects.</li>
+        <li>A 10-minute training scene came first, so everyone was comfortable with the gesture before testing.</li>
+        <li>Unity logged time and errors automatically. Screen recordings helped us check unusual behaviour.</li>
+        <li>We cleaned outliers and analysed the data in Python with paired t-tests and a two-way repeated-measures ANOVA.</li>
+      </ol>
+      <h3>What we found</h3>
+      <div class="bench">
+        <div class="bench-card">
+          <h4 style="margin-top:0">The overhead view was faster</h4>
+          <div class="sub">About 8 seconds quicker per task on average (p = 0.008).</div>
+          <div class="bar-row"><span>Overhead view</span><span class="val">30.7 s</span><span class="track"><i data-w="78"></i></span></div>
+          <div class="bar-row"><span>Driver's seat</span><span class="val">39.1 s</span><span class="track"><i class="dim" data-w="100"></i></span></div>
         </div>
-        <div>
-          <h4>Research question</h4>
-          <div class="callout"><p>How do <b>task type</b> (marking safe vs. unsafe objects) and <b>camera view</b> (driver's seat vs. overhead roof camera) affect task completion time and error rates, including false positives and false negatives?</p></div>
-        </div>
-        <div>
-          <h4>How we studied it</h4>
-          <ul>
-            <li>Built 16 VR road scenes in Unity for the Varjo XR-3 headset. In each one, a car has stopped and needs help.</li>
-            <li>Participants marked objects with a hand pinch gesture and a pointing ray, without controllers.</li>
-            <li>Every participant tried all four combinations (2 tasks × 2 camera views), in a counterbalanced order to reduce learning effects.</li>
-            <li>A 10-minute training scene came first, so everyone was comfortable with the gesture before testing.</li>
-            <li>Unity logged time and errors automatically. Screen recordings helped us check unusual behaviour.</li>
-            <li>We cleaned outliers and analysed the data in Python with paired t-tests and a two-way repeated-measures ANOVA.</li>
-          </ul>
-        </div>
-        <div>
-          <h4>What we found</h4>
-          <div class="results">
-            <figure class="result">
-              <figcaption><b>The overhead view was faster.</b> About 8 seconds quicker per task on average (p = 0.008).</figcaption>
-              <div class="bars" role="img" aria-label="Average task time: overhead roof camera 30.7 seconds, driver's seat 39.1 seconds">
-                <div class="bar-row"><span class="bar-label">Overhead view</span><span class="bar-track"><span class="bar hi" style="width:68.2%"></span></span><span class="bar-val">30.7 s</span></div>
-                <div class="bar-row"><span class="bar-label">Driver's seat</span><span class="bar-track"><span class="bar" style="width:87.0%"></span></span><span class="bar-val">39.1 s</span></div>
-              </div>
-            </figure>
-            <figure class="result">
-              <figcaption><b>Spotting danger caused more mistakes.</b> Marking unsafe objects had a much higher error rate (p &lt; 0.001).</figcaption>
-              <div class="bars" role="img" aria-label="Average error rate: safe objects 30 percent, unsafe objects 49 percent">
-                <div class="bar-row"><span class="bar-label">Safe objects</span><span class="bar-track"><span class="bar" style="width:50.5%"></span></span><span class="bar-val">30%</span></div>
-                <div class="bar-row"><span class="bar-label">Unsafe objects</span><span class="bar-track"><span class="bar hi" style="width:81.8%"></span></span><span class="bar-val">49%</span></div>
-              </div>
-            </figure>
-          </div>
-          <p style="margin-top:14px">Camera view did not change accuracy in a meaningful way (38% vs. 41% errors, p = 0.22). We had expected unsafe objects to be easier, so this finding went against our hypothesis.</p>
-        </div>
-        <div>
-          <h4>What it means for design</h4>
-          <ul>
-            <li><b>Offer an overhead view.</b> A remote operator isn't limited to a driver's seat, and a bird's-eye view speeds up decisions without hurting accuracy.</li>
-            <li><b>Support the hard decisions.</b> Judging danger is where people struggle, so cues like AR highlights or AI suggestions should focus there.</li>
-          </ul>
-        </div>
-        <div>
-          <h4>What I took away</h4>
-          <p>Numbers told us <i>what</i> happened but not <i>why</i>. Next time I would add think-aloud sessions or short interviews to understand why people hesitate over unsafe objects, and measure workload, not only time and errors.</p>
-        </div>
-        <div class="links">
-          <a href="https://su.drive.sunet.se/s/mGqE3LrrBmRjsqP?dir=/&amp;editing=false&amp;openfile=true" target="_blank" rel="noopener">View paper &amp; project files ↗</a>
+        <div class="bench-card">
+          <h4 style="margin-top:0">Spotting danger caused more mistakes</h4>
+          <div class="sub">Marking unsafe objects had a much higher error rate (p &lt; 0.001).</div>
+          <div class="bar-row"><span>Safe objects</span><span class="val">30%</span><span class="track"><i data-w="30"></i></span></div>
+          <div class="bar-row"><span>Unsafe objects</span><span class="val">49%</span><span class="track"><i class="warm" data-w="49"></i></span></div>
         </div>
       </div>
-    </article>
-  </section>
-
-  <section id="academic">
-    <div class="sec-head">
-      <h2>Academic projects</h2>
-      <span class="label">Stockholm University · 2023 – 2024</span>
-    </div>
-    <div class="proj-list">
-      <div class="proj">
-        <div class="yr">2024</div>
-        <div>
-          <h3>Different Eye Interaction in Virtual Reality</h3>
-          <p class="tools">Unity · Meta VR headset · C#</p>
-          <ul>
-            <li>Developed a fully immersive VR project exploring different methods of eye interaction.</li>
-            <li>Focused on dwell time, gaze duration and pattern recognition using eye-tracking technology.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="proj">
-        <div class="yr">2024</div>
-        <div>
-          <h3>TwinTurbine: Digital Twin for Tangible Turbine Simulation</h3>
-          <p class="tools">Unity · Meta VR headset · C# · Python</p>
-          <p class="desc">A digital twin that lets people experience how a wind turbine works in mixed reality. Several users can monitor and control the turbine together, see its real-time data and get immediate feedback. Since a real turbine wasn't available, we used a scaled physical model that behaves like one.</p>
-          <ul>
-            <li>Created a digital twin of a tangible turbine connected to Unity for real-time XR simulation.</li>
-            <li>Developed interaction mechanisms that let users control the turbine in virtual space through tangible input.</li>
-            <li>Documented the project lifecycle, focusing on XR design principles and integrating physical components with Unity.</li>
-          </ul>
-          <p class="proj-links"><a href="#twinturbine">Read the case study ↑</a><a href="https://www.youtube.com/watch?v=tg5tRyCmQH8" target="_blank" rel="noopener">Watch video ↗</a><a href="https://gitea.dsv.su.se/ExtralityLab/DCDC24-TwinTurbine" target="_blank" rel="noopener">View code ↗</a></p>
-        </div>
-      </div>
-      <div class="proj">
-        <div class="yr">2023</div>
-        <div>
-          <h3>Atom Craft: A VR and Tangible Interaction Project</h3>
-          <p class="tools">Unity · Meta VR headset · C# · Python</p>
-          <p class="desc">An educational VR experience about what atoms are made of. Users build a hydrogen atom (easy task) and a lithium atom (harder task) using a physical device. It helps learners of all ages discover or revise the Bohr model of the atom in an engaging, hands-on way.</p>
-          <ul>
-            <li>Prototyped a tangible interface integrated with a virtual reality environment using Unity and Python.</li>
-            <li>Set up communication between the tangible device and the VR system for real-time interaction.</li>
-            <li>Wrote full project documentation covering technical workflows and user interaction design.</li>
-          </ul>
-          <p class="proj-links"><a href="https://gitea.dsv.su.se/ExtralityLab/DET24-AtomCraft" target="_blank" rel="noopener">View code &amp; documentation ↗</a></p>
-        </div>
-      </div>
-      <div class="proj">
-        <div class="yr">2023</div>
-        <div>
-          <h3>2D and 3D Game Development in Unity</h3>
-          <p class="tools">Unity (2D and 3D) · C#</p>
-          <ul>
-            <li>Designed and developed several individual projects focused on gameplay mechanics, physics interactions and visual effects.</li>
-            <li>Built strong skills in Unity's 2D and 3D frameworks, problem solving and creative thinking.</li>
-          </ul>
-        </div>
+      <p style="margin-top: 18px">Camera view did not change accuracy in a meaningful way (38% vs. 41% errors, p = 0.22). We had expected unsafe objects to be easier, so this finding went against our hypothesis.</p>
+      <h3>What it means for design</h3>
+      <ul>
+        <li><b>Offer an overhead view.</b> A remote operator isn't limited to a driver's seat, and a bird's-eye view speeds up decisions without hurting accuracy.</li>
+        <li><b>Support the hard decisions.</b> Judging danger is where people struggle, so cues like AR highlights or AI suggestions should focus there.</li>
+      </ul>
+      <h3>What I took away</h3>
+      <blockquote>Numbers told us what happened but not why.</blockquote>
+      <p>Next time I would add think-aloud sessions or short interviews to understand why people hesitate over unsafe objects, and measure workload, not only time and errors.</p>
+      <div class="links-row">
+        <a class="link-arrow" href="https://su.drive.sunet.se/s/mGqE3LrrBmRjsqP?dir=/&amp;editing=false&amp;openfile=true" target="_blank" rel="noopener">View paper &amp; project files ↗</a>
       </div>
     </div>
-  </section>
+  </div>
+</dialog>
 
-  <section id="about">
-    <div class="sec-head"><h2>Skills &amp; education</h2></div>
-    <div class="about">
-      <div class="skills">
-        <div><h3>Research</h3><div class="chips"><span>User testing</span><span>Test design</span><span>Metrics &amp; success criteria</span><span>Controlled studies</span><span>Statistics</span><span>Technical writing</span></div></div>
-        <div><h3>Prototyping</h3><div class="chips"><span>Unity</span><span>Godot</span><span>VR / AR</span><span>Android</span><span>Arduino</span></div></div>
-        <div><h3>Code</h3><div class="chips"><span>Python</span><span>C#</span><span>Kotlin</span><span>HTML</span><span>Git</span></div></div>
-      </div>
-    </div>
-    <div class="edu" style="margin-top:40px">
-      <div class="edu-row"><div class="yr">2023 – 2025</div><div><h3>Master's, Design for Immersive and Creative Technology</h3><p>Stockholm University</p></div></div>
-      <div class="edu-row"><div class="yr">2010 – 2016</div><div><h3>Bachelor's, Computer Engineering</h3><p>Raja University, Iran</p></div></div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2>Let's talk.</h2>
-    <p>Open to UX research and design roles in Stockholm and remote.</p>
-    <div class="email">
-      <code id="mail">maddahiimina@gmail.com</code>
-      <button type="button" id="copy">Copy email</button>
-    </div>
-    <div class="links">
-      <a href="https://www.linkedin.com/in/mina-maddahi-9b90b5264" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </div>
-  </section>
-
-  <footer>© 2026 Mina Maddahi · Stockholm</footer>
-</div>
-
-<script>
-document.getElementById('copy').addEventListener('click', function () {
-  var btn = this, text = document.getElementById('mail').textContent;
-  function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); }
-  function fallback() {
-    var r = document.createRange(); r.selectNodeContents(document.getElementById('mail'));
-    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
-  }
-  try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback); } catch (e) { fallback(); }
-});
-</script>
-
-</body></html>
+<script src="main.js" defer></script>
+</body>
+</html>
