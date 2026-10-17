@@ -1,4 +1,4 @@
-/* Living portrait: the photo is rendered in WebGL so the head can turn toward
+/* Living portrait: the avatar is rendered in WebGL so the head can turn toward
    the cursor (a depth-weighted warp), the irises can follow it inside the
    traced eye openings, and the eyelids can blink. Falls back to the plain
    <img> when WebGL is missing or reduced motion is requested. */
@@ -15,25 +15,28 @@
   var gl = canvas.getContext('webgl', { antialias: false, alpha: false, preserveDrawingBuffer: false });
   if (!gl) return;
 
-  // Source photo is 640 × 800; everything below is in its pixel space.
-  var IW = 640, IH = 800;
+  // Illustrated avatar, 960 × 1200; everything below is in its pixel space.
+  var IW = 960, IH = 1200;
   var EYES = [
     {
-      upper: [[213.5, 201.5], [217, 198.5], [221, 196.2], [226, 194.6], [232, 193.8], [238, 193.8], [243, 195], [247, 197.2], [250.5, 200.5], [252.5, 204]],
-      lower: [[213.5, 201.5], [216.5, 205], [221, 208], [227, 209.6], [234, 210.2], [241, 209.6], [246, 208], [250, 206], [252.5, 204]],
-      iris: [235.5, 201.5, 9.5],
-      sclera: [146, 139, 140],
-      lid: [150, 104, 86]
+      upper: [[338, 330], [341.5, 324], [346, 319], [351, 315.6], [357, 312.6], [364, 310.4], [372, 309.6], [379, 310.4], [385, 312.8], [389.5, 317], [392.5, 323], [394, 330], [394.5, 334]],
+      lower: [[338, 330], [341, 333.5], [345, 336.3], [352, 338], [360, 338.6], [370, 338], [380, 336.5], [386, 335.3], [390, 334.5], [394.5, 334]],
+      iris: [372, 323, 17],
+      sclera: [178, 158, 149],
+      lid: [150, 92, 70]
     },
     {
-      upper: [[311, 200], [315, 196.5], [320, 194], [326, 192.4], [332, 192], [338, 192.3], [344, 194], [348.5, 196.6], [352, 199.8], [354, 202.5]],
-      lower: [[311, 200], [315, 203.5], [320, 205.5], [327, 207], [334, 207.8], [341, 207.3], [346, 206.2], [350.5, 204.5], [354, 202.5]],
-      iris: [337.5, 199.5, 9.5],
-      sclera: [180, 160, 157],
-      lid: [186, 137, 117]
+      upper: [[466, 329], [470, 323.5], [475, 319], [481, 314.6], [488, 310.4], [496, 307.2], [505, 305.6], [514, 305.5], [522, 307.2], [530, 310.8], [536, 315.4], [541, 321], [544.5, 326.5], [546.5, 331]],
+      lower: [[466, 329], [470, 330.6], [480, 332.6], [490, 334.4], [500, 335.5], [511, 335.7], [520, 334.8], [528, 333.4], [535, 332.2], [541, 331.6], [546.5, 331]],
+      iris: [512, 320.5, 17.5],
+      sclera: [204, 170, 158],
+      lid: [196, 128, 100]
     }
   ];
-  var FACE = { x: 300, y: 225 }; // point the head "looks from"
+  // Rough depth for the head turn: whole head, the face in front of it, the nose in front of that.
+  var DEPTH = { head: [480, 330, 300, 340], face: [470, 385, 170, 225], nose: [415, 405, 38] };
+  var LOOK = { x: 442, y: 335 }; // point the head "looks from"
+  var SPLIT = 430; // x between the eyes
 
   var VERT = 'attribute vec2 aPos; varying vec2 vUv;' +
     'void main(){ vUv = vec2(aPos.x * 0.5 + 0.5, 0.5 - aPos.y * 0.5); gl_Position = vec4(aPos, 0.0, 1.0); }';
@@ -47,35 +50,32 @@
     'uniform sampler2D uImg; uniform sampler2D uMask;',
     'uniform vec2 uHead; uniform vec2 uGazeL; uniform vec2 uGazeR; uniform float uBlink;',
     'uniform vec3 uIrisL; uniform vec3 uIrisR; uniform vec3 uScleraL; uniform vec3 uScleraR; uniform vec3 uLidL; uniform vec3 uLidR;',
+    'uniform vec2 uSize; uniform vec4 uHeadE; uniform vec4 uFaceE; uniform vec3 uNose; uniform float uSplit;',
     'varying vec2 vUv;',
-    'const vec2 SIZE = vec2(640.0, 800.0);',
-    'vec3 tex(vec2 p){ return texture2D(uImg, clamp(p, vec2(0.5), SIZE - 0.5) / SIZE).rgb; }',
+    'vec3 tex(vec2 p){ return texture2D(uImg, clamp(p, vec2(0.5), uSize - 0.5) / uSize).rgb; }',
     'float ell(vec2 p, vec2 c, vec2 r){ vec2 q = (p - c) / r; return smoothstep(0.0, 1.0, clamp(1.0 - dot(q, q), 0.0, 1.0)); }',
     'void main(){',
-    '  vec2 p = vUv * SIZE;',
-    // Rough depth: whole head, the face in front of it, the nose in front of that.
-    '  vec2 n = (p - vec2(275.0, 262.0)) / 26.0;',
-    '  float depth = 0.45 * ell(p, vec2(305.0, 225.0), vec2(185.0, 230.0))',
-    '              + 0.45 * ell(p, vec2(300.0, 250.0), vec2(125.0, 150.0))',
-    '              + 0.30 * exp(-dot(n, n));',
+    '  vec2 p = vUv * uSize;',
+    '  vec2 n = (p - uNose.xy) / uNose.z;',
+    '  float depth = 0.45 * ell(p, uHeadE.xy, uHeadE.zw) + 0.45 * ell(p, uFaceE.xy, uFaceE.zw) + 0.30 * exp(-dot(n, n));',
     '  vec2 s = p - depth * uHead;',
     '  vec3 col = tex(s);',
-    '  vec4 m = texture2D(uMask, s / SIZE);',
+    '  vec4 m = texture2D(uMask, s / uSize);',
     '  if (m.r > 0.002 || (m.a > 0.002 && uBlink > 0.001)) {',
-    '    bool right = s.x > 285.0;',
+    '    bool right = s.x > uSplit;',
     '    vec3 iris = right ? uIrisR : uIrisL;',
     '    vec2 gaze = right ? uGazeR : uGazeL;',
     '    vec3 sclera = right ? uScleraR : uScleraL;',
-    '    vec3 lidCol = (right ? uLidR : uLidL) * (1.0 - 0.14 * pow((s.x - iris.x) / 22.0, 2.0));',
+    '    vec3 lidCol = (right ? uLidR : uLidL) * (1.0 - 0.14 * pow((s.x - iris.x) / (2.3 * iris.z), 2.0));',
     '    float t = m.g;',
     '    sclera *= mix(0.62, 1.0, smoothstep(0.0, 0.6, t)) * mix(1.0, 0.85, smoothstep(0.7, 1.0, t));',
     // Fill where the iris used to be with sclera, then lay the iris at its new spot.
-    '    float R = iris.z + 1.6;',
-    '    float was = 1.0 - smoothstep(R - 0.5, R + 0.5, length(s - iris.xy));',
+    '    float R = iris.z * 1.17, soft = iris.z * 0.05;',
+    '    float was = 1.0 - smoothstep(R - soft, R + soft, length(s - iris.xy));',
     '    vec3 eye = mix(col, sclera, was);',
     '    vec2 src = s - gaze;',
-    '    float inside = 1.0 - smoothstep(R - 0.5, R + 0.5, length(src - iris.xy));',
-    '    float known = texture2D(uMask, src / SIZE).r;',
+    '    float inside = 1.0 - smoothstep(R - soft, R + soft, length(src - iris.xy));',
+    '    float known = texture2D(uMask, src / uSize).r;',
     '    vec3 irisPx = mix(vec3(0.13, 0.09, 0.08), tex(src), smoothstep(0.2, 0.9, known));',
     '    eye = mix(eye, irisPx, inside);',
     // Blink: an upper lid in the skin tone just above the eye closes over it, lash line at its edge.
@@ -83,17 +83,17 @@
     '      float b = uBlink * 1.08;',
     '      float u = clamp(t / b, 0.0, 1.0);',
     // Borrow skin texture from just under the eye, mirrored, tinted toward the lid tone.
-    '      float low = s.y + (1.0 - t) * m.b * 32.0;',
-    '      vec2 mp = vec2(s.x, low + 2.5 + (low - s.y) * 0.7);',
-    '      vec3 under = (tex(mp) + tex(mp + vec2(1.2, 0.0)) + tex(mp - vec2(1.2, 0.0))) / 3.0;',
-    '      vec3 lid = mix(lidCol, under * 1.1, 0.55) * mix(1.02, 0.8, u * u);',
+    '      float h = m.b * 64.0, low = s.y + (1.0 - t) * h;',
+    '      vec2 mp = vec2(s.x, low + 0.35 * h + (low - s.y) * 0.5);',
+    '      vec3 under = (tex(mp) + tex(mp + vec2(2.0, 0.0)) + tex(mp - vec2(2.0, 0.0))) / 3.0;',
+    '      vec3 lid = mix(lidCol, under * 1.05, 0.35) * mix(1.02, 0.8, u * u);',
     '      eye = mix(eye, lid, smoothstep(b + 0.05, b - 0.05, t));',
     '      float lash = 1.0 - smoothstep(0.02, 0.1, abs(t - b + 0.03));',
-    '      eye = mix(eye, vec3(0.16, 0.1, 0.08), 0.65 * lash * smoothstep(0.02, 0.2, uBlink));',
+    '      eye = mix(eye, vec3(0.1, 0.06, 0.05), 0.8 * lash * smoothstep(0.02, 0.2, uBlink));',
     '    }',
     '    col = mix(col, eye, m.r);',
     // While blinking, the band just above the opening (the old lash line) becomes lid skin too.
-    '    col = mix(col, lidCol, 0.8 * m.a * smoothstep(0.0, 0.35, uBlink));',
+    '    col = mix(col, lidCol, 0.85 * m.a * smoothstep(0.3, 0.7, uBlink));',
     '  }',
     '  gl_FragColor = vec4(col, 1.0);',
     '}'
@@ -119,15 +119,16 @@
   }
 
   // Eye mask: R = how much of the pixel is inside the opening,
-  // G = position from upper lid (0) to lower lid (1), B = opening height / 32,
+  // G = position from upper lid (0) to lower lid (1), B = opening height / 64,
   // A = the lash-line band just above the opening.
   function buildMask() {
     var data = new Uint8Array(IW * IH * 4);
     EYES.forEach(function (e) {
       var x0 = Math.floor(e.upper[0][0]) - 2, x1 = Math.ceil(e.upper[e.upper.length - 1][0]) + 2;
-      var y0 = Math.floor(Math.min.apply(null, e.upper.map(function (p) { return p[1]; }))) - 3;
+      var y0 = Math.floor(Math.min.apply(null, e.upper.map(function (p) { return p[1]; }))) - 8;
       var y1 = Math.ceil(Math.max.apply(null, e.lower.map(function (p) { return p[1]; }))) + 3;
       var xa = e.upper[0][0], xb = e.upper[e.upper.length - 1][0];
+      var bandH = 0.32 * (y1 - y0 - 11);
       for (var y = y0; y <= y1; y++) {
         for (var x = x0; x <= x1; x++) {
           var cov = 0, band = 0;
@@ -137,7 +138,7 @@
               if (!(px > xa && px < xb)) continue;
               var up = lerpCurve(e.upper, px);
               if (py > up && py < lerpCurve(e.lower, px)) cov++;
-              else if (py <= up && py > up - 3.5) band += 1 - (up - py) / 3.5;
+              else if (py <= up && py > up - bandH) band += 1 - (up - py) / bandH;
             }
           }
           var cx = Math.min(xb - 0.5, Math.max(xa + 0.5, x + 0.5));
@@ -147,7 +148,7 @@
           var k = (y * IW + x) * 4;
           data[k] = Math.round(cov / 16 * 255);
           data[k + 1] = Math.round(t * 255);
-          data[k + 2] = Math.round(Math.min(1, h / 32) * 255);
+          data[k + 2] = Math.round(Math.min(1, h / 64) * 255);
           data[k + 3] = Math.round(band / 16 * 255);
         }
       }
@@ -176,7 +177,7 @@
       gl.linkProgram(prog);
       if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     } catch (err) {
-      return; // keep the static photo
+      return; // keep the static image
     }
     gl.useProgram(prog);
 
@@ -191,7 +192,8 @@
     texture(1, buildMask(), IW, IH);
 
     var U = {};
-    ['uImg', 'uMask', 'uHead', 'uGazeL', 'uGazeR', 'uBlink', 'uIrisL', 'uIrisR', 'uScleraL', 'uScleraR', 'uLidL', 'uLidR'].forEach(function (n) {
+    ['uImg', 'uMask', 'uHead', 'uGazeL', 'uGazeR', 'uBlink', 'uIrisL', 'uIrisR', 'uScleraL', 'uScleraR', 'uLidL', 'uLidR',
+      'uSize', 'uHeadE', 'uFaceE', 'uNose', 'uSplit'].forEach(function (n) {
       U[n] = gl.getUniformLocation(prog, n);
     });
     gl.uniform1i(U.uImg, 0);
@@ -202,6 +204,11 @@
     gl.uniform3fv(U.uScleraR, EYES[1].sclera.map(function (c) { return c / 255; }));
     gl.uniform3fv(U.uLidL, EYES[0].lid.map(function (c) { return c / 255; }));
     gl.uniform3fv(U.uLidR, EYES[1].lid.map(function (c) { return c / 255; }));
+    gl.uniform2f(U.uSize, IW, IH);
+    gl.uniform4fv(U.uHeadE, DEPTH.head);
+    gl.uniform4fv(U.uFaceE, DEPTH.face);
+    gl.uniform3fv(U.uNose, DEPTH.nose);
+    gl.uniform1f(U.uSplit, SPLIT);
 
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -233,7 +240,7 @@
       var scale = rect.width / IW;
       var targetHead, targetGaze;
       if (pointer && now - lastMove < 4000) {
-        var fx = rect.left + FACE.x * scale, fy = rect.top + FACE.y * scale;
+        var fx = rect.left + LOOK.x * scale, fy = rect.top + LOOK.y * scale;
         var dx = pointer.x - fx, dy = pointer.y - fy;
         var dh = Math.hypot(dx, dy, rect.height * 1.5), de = Math.hypot(dx, dy, rect.height * 0.45);
         targetHead = [dx / dh, dy / dh];
@@ -269,8 +276,9 @@
       // Lids drop a little when looking down.
       blink = Math.max(blink, Math.max(0, gaze.y) * 0.22);
 
-      var gx = gaze.x * 4.6, gy = gaze.y * (gaze.y < 0 ? 2 : 1.6);
-      var hx = head.x * 9, hy = head.y * 6;
+      var r = EYES[0].iris[2];
+      var gx = gaze.x * r * 0.48, gy = gaze.y * r * (gaze.y < 0 ? 0.21 : 0.17);
+      var hx = head.x * IW * 0.014, hy = head.y * IW * 0.0094;
       var key = [hx, hy, gx, gy, blink].map(function (v) { return v.toFixed(2); }).join();
       if (key === last) return;
       last = key;
