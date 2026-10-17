@@ -96,7 +96,10 @@
     '    float top = s.y - dy, band = -liner - lash;',
     '    vec3 margin = img(vec2(s.x, min(s.y - d, top - 1.2)));',
     '    vec4 lidSkin = texture2D(uSkin, vec2(qc.x, 0.5));',
-    '    vec3 skin = lidSkin.rgb * mix(1.0, 0.9, clamp((dy - band) / max(d, 1.0), 0.0, 1.0));',
+    // start from the skin just above the lid so the seam disappears, then settle into the
+    // smoothed lid tone with a little shading toward the lashes
+    '    vec3 edgeSkin = img(vec2(s.x, top + band - 1.5));',
+    '    vec3 skin = mix(edgeSkin, lidSkin.rgb, smoothstep(0.0, 5.0, dy - band)) * mix(1.0, 0.9, clamp((dy - band) / max(d, 1.0), 0.0, 1.0));',
     '    float above = 1.0 - clamp(0.5 + (dy - d) / max(wdy + k * wh, 1e-3), 0.0, 1.0);',
     '    float lid = above * clamp((dy - band) / 2.0 + 0.5, 0.0, 1.0) * smoothstep(0.0, 1.5, d) * lidSkin.a;',
     '    float unfold = 1.0 - clamp((dy - band - d) / 1.5 + 0.5, 0.0, 1.0);',
@@ -378,9 +381,20 @@
       for (var c = 1; c < W; c++) if (!skinRow[c * 3]) for (var ch = 0; ch < 3; ch++) skinRow[c * 3 + ch] = skinRow[(c - 1) * 3 + ch];
       for (c = W - 2; c >= 0; c--) if (!skinRow[c * 3]) for (ch = 0; ch < 3; ch++) skinRow[c * 3 + ch] = skinRow[(c + 1) * 3 + ch];
     }
+    // smooth along the lid so the skin has no vertical banding
+    var smooth = new Float32Array(W * 3);
+    for (c = 0; c < W; c++) {
+      var wsum = 0;
+      for (var o = -10; o <= 10; o++) {
+        var cc = Math.min(W - 1, Math.max(0, c + o)), wt = Math.exp(-o * o / 32);
+        wsum += wt;
+        for (ch = 0; ch < 3; ch++) smooth[c * 3 + ch] += skinRow[cc * 3 + ch] * wt;
+      }
+      for (ch = 0; ch < 3; ch++) smooth[c * 3 + ch] /= wsum;
+    }
     var skinBytes = new Uint8Array(W * 4);
     for (c = 0; c < W; c++) {
-      for (ch = 0; ch < 3; ch++) skinBytes[c * 4 + ch] = Math.round(skinRow[c * 3 + ch]);
+      for (ch = 0; ch < 3; ch++) skinBytes[c * 4 + ch] = Math.round(smooth[c * 3 + ch]);
       skinBytes[c * 4 + 3] = Math.round(skinFade[c] * 255);
     }
     return { rect: R, plate: bytes(plate), iris: bytes(layer, alpha), mask: mask, skin: skinBytes };
